@@ -20,12 +20,14 @@ app.post('/solicitud/aceptar', solicitudController.aceptarSolicitud);
 app.post('/solicitud/rechazar', solicitudController.rechazarSolicitud);
 
 app.post('/amistad/eliminar', amistadController.eliminarAmigo);
+app.post('/amistad/amigos', amistadController.verAmigos);
 app.post('/amistad/perfil', amistadController.verPerfilAmigo);
+
 
 //app.post('/amigos/todos', amistadRoutes);
 //app.post('/amigos/uno', amistadRoutes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => {
     console.log(`Servidor en ejecución en el puerto ${PORT}`);
   });

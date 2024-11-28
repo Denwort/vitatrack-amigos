@@ -20,12 +20,30 @@ exports.eliminarAmigo = async (req, res) => {
     }
   };
 
+  
+  exports.verAmigos = async (req, res) => {
+    try {
+      const { userId } = req.body;
+  
+      const amigos = await supabaseService.obtenerAmigos(userId);
+      
+      const perfiles = await Promise.all(
+        amigos.map(async (amigo) => {
+          return await usuariosService.getProfileById(amigo.friend_id);
+        })
+      );
+  
+      res.status(200).json( perfiles );
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  };
+
 
   exports.verPerfilAmigo = async (req, res) => {
     try {
       const { userId, friendId } = req.body;
   
-      console.log(userId, friendId)
       const amistad = await supabaseService.obtenerAmistad(userId, friendId);
       if (!amistad) {
         return res.status(400).json({ error: "No son amigos" });

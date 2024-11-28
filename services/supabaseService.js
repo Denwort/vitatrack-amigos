@@ -74,6 +74,18 @@ exports.obtenerAmistad = async (userId, amigoId) => {
   return data;
 };
 
+
+exports.obtenerAmigos = async (userId) => {
+  const { data, error } = await supabase
+  .from("amigos")
+  .select("user_id, friend_id")
+  .eq("user_id", userId); // Filtra solo donde user_id sea igual a userId
+
+  if (error) throw new Error(`Error al obtener amistad: ${error.message}`);
+  return data;
+};
+
+
 exports.eliminarAmigos = async (userId, amigoId) => {
   const { data, error } = await supabase
     .from("amigos")
