@@ -5,7 +5,7 @@ const cors = require('cors');
 
 // Controllers
 const solicitudController = require("./controllers/solicitudController");
-const amistadController = require("./controllers/amistadController");
+const amigosController = require("./controllers/amigosController");
 
 require('dotenv').config();
 
@@ -19,9 +19,9 @@ app.get('/solicitud/ver', solicitudController.verSolicitudes);
 app.post('/solicitud/aceptar', solicitudController.aceptarSolicitud);
 app.post('/solicitud/rechazar', solicitudController.rechazarSolicitud);
 
-app.post('/amistad/eliminar', amistadController.eliminarAmigo);
-app.post('/amistad/amigos', amistadController.verAmigos);
-app.post('/amistad/perfil', amistadController.verPerfilAmigo);
+app.post('/amistad/eliminar', amigosController.eliminarAmigo);
+app.post('/amistad/amigos', amigosController.verAmigos);
+app.post('/amistad/perfil', amigosController.verPerfilAmigo);
 
 
 //app.post('/amigos/todos', amistadRoutes);
