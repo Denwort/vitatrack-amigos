@@ -22,8 +22,16 @@ exports.verSolicitudes = async (req, res) => {
 
     // Obtenemos las solicitudes pendientes donde el usuario es el receptor
     const solicitudes = await supabaseService.obtenerSolicitudesPendientes(userId);
+    console.log(solicitudes)
+    const solicitudesConPerfil = await Promise.all(
+      solicitudes.map(async (solicitud) => {
+        const perfil = await usuariosService.getProfileById(solicitud.sender_id);
+        return { ...solicitud, perfil }; // Combina los datos de la solicitud con el perfil
+      })
+    );
+    console.log(solicitudesConPerfil)
 
-    res.status(200).json({ solicitudes });
+    res.status(200).json( solicitudesConPerfil );
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

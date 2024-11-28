@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 // Rutas
 app.post('/solicitud/enviar', solicitudController.enviarSolicitud);
-app.get('/solicitud/ver', solicitudController.verSolicitudes);
+app.post('/solicitud/ver', solicitudController.verSolicitudes);
 app.post('/solicitud/aceptar', solicitudController.aceptarSolicitud);
 app.post('/solicitud/rechazar', solicitudController.rechazarSolicitud);
 
